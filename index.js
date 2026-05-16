@@ -3,6 +3,7 @@ import { PrismaClient } from "./prisma/generated/client.js";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { Pool } from "pg";
 import dotenv from "dotenv";
+import axios from "axios";
 
 dotenv.config();
 
@@ -32,6 +33,20 @@ async function startServer() {
 }
 
 startServer();
+
+// --- 3. UYG'OTUVCHI (Self-Ping) ---
+// Har 10 daqiqada bot o'ziga so'rov yuboradi
+setInterval(
+  () => {
+    // Render-da loyiha yaratganingizdan keyin beriladigan URL-ni shu yerga qo'ying
+    const RENDER_URL = "https://user-backend-alfx.onrender.com/users";
+    axios
+      .get(RENDER_URL)
+      .then(() => console.log("⏰ Bot uyg'oq saqlandi!"))
+      .catch((err) => console.log("⏰ Uyg'otish xabari yuborildi."));
+  },
+  10 * 60 * 1000,
+);
 
 // Hamma userlarni olish
 app.get("/users", async (req, res) => {
