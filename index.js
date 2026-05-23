@@ -19,7 +19,7 @@ const prisma = new PrismaClient({ adapter });
 // Har 10 daqiqada bot o'ziga so'rov yuboradi
 setInterval(
   () => {
-    const RENDER_URL = "https://user-backend-alfx.onrender.com/users";
+    const RENDER_URL = "https://ishtopperbot.onrender.com";
     axios
       .get(RENDER_URL)
       .then(() => console.log("⏰ Bot uyg'oq saqlandi!"))
